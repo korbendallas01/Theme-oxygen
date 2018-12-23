@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="{{ settings.language }}" class="noscript">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
+	<script type="text/javascript">document.querySelector("html").classList.remove("noscript");</script>
+	<koken:include file="inc/components/meta.php" />
+	<koken:title />
+	<koken:meta />
+	<noscript>
+		<koken:asset file="css/noscript.css" />
+	</noscript>
+	<koken:settings />
+	<link href="{{ location.theme_path }}/css/sitetitle/{{settings.font_site}}.css" rel="stylesheet" type="text/css" />
+	<link href="{{ location.theme_path }}/css/headers/{{settings.font_head}}.css" rel="stylesheet" type="text/css" />
+	<link href="{{ location.theme_path }}/css/body/{{settings.font_body}}.css" rel="stylesheet" type="text/css" />
+	<link href="{{ location.theme_path }}/css/links/{{settings.font_link}}.css" rel="stylesheet" type="text/css" />
+	<koken:if true="settings.show_sharing_icons">
+		<koken:asset file="css/kshare.css" />
+	</koken:if>
+	<koken:asset file="kicons.css" common="true" />
+	<koken:asset file="font-awesome.min.css" common="true" if="settings.font_awesome" />
+</head>
+	<body id="{{ settings.menu_type}}" class="{{ settings.menu_type}} {{ settings.shrinking_header }} extended_{{ settings.extended_splash }} {{ settings.img_protect }}">
+		<koken:if data="settings.menu_type" equals="expanded"><div class="expanded-wrapper"></koken:if>
+			<header id="{{ settings.menu_type}}" class="{{ settings.menu_type}}">
+				<koken:link to="front" title="{{ labels.home.singular }}">
+					<koken:if data="settings.site_title_type" equals="combi">
+						<koken:if data="location.here" equals="/">
+							<koken:not empty="settings.site_title_img_url">
+								<img src="{{ settings.site_title_img_url }}" alt="{{ site.title }} - {{ site.tagline }}" id="logo">
+							<koken:else>
+								<koken:asset file="inc/components/img/oxygen-logo-color.png" alt="{{ site.title }} - {{ site.tagline }}" id="logo" />
+							</koken:not>
+						<koken:else>
+							<koken:not empty="settings.site_title_combi_img_url">
+								<h1 id="sitename_combi" class="site-name">{{ site.title }}</h1>
+							<koken:else>
+								<h1 id="sitename" class="site-name">{{ site.title }}</h1>
+							</koken:not>
+						</koken:if>
+					</koken:if>
+					<koken:if data="settings.site_title_type" equals="text">
+						<h1 id="sitename" class="site-name">{{ site.title }}</h1>
+					</koken:if>
+					<koken:if data="settings.site_title_type" equals="image">
+						<koken:not empty="settings.site_title_img_url">
+							<img src="{{ settings.site_title_img_url }}" alt="{{ site.title }} - {{ site.tagline }}" id="logo">
+						<koken:else>
+							<koken:asset file="inc/components/img/oxygen-logo-color.png" alt="{{ site.title }} - {{ site.tagline }}" id="logo" />
+						</koken:not>
+					</koken:if>
+				</koken:link>
+				<koken:if data="settings.menu_type" equals="regular || expanded">
+					<div class="menu" id="menu--{{settings.menu_type}}">
+						<a href="javascript:void(0);" title="{{ language.kcs_open_menu_ }}" class="show">
+							<svg id="hamburger" alt="{{ language.kcs_menu_ }}" version="1.1" viewBox="0 0 32 32" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+								<path d="M4,10h24c1.104,0,2-0.896,2-2s-0.896-2-2-2H4C2.896,6,2,6.896,2,8S2.896,10,4,10z M28,14H4c-1.104,0-2,0.896-2,2  s0.896,2,2,2h24c1.104,0,2-0.896,2-2S29.104,14,28,14z M28,22H4c-1.104,0-2,0.896-2,2s0.896,2,2,2h24c1.104,0,2-0.896,2-2  S29.104,22,28,22z"/>
+							</svg>
+						</a>
+						<nav role="navigation" id="nav-{{settings.menu_type}}" class="okayNav-{{settings.menu_type}} search-{{ settings.menua_search_bttn_show }}"><koken:navigation /></nav>
+					</div>
+				<koken:else>
+					<nav id="oxygen-menu-slide-{{ settings.menu_type }}" class="oxygen-menu oxygen-menu-slide-{{ settings.menu_type }}">
+						<koken:if data="settings.menua_search_bttn_show" equals="true" && "(data="settings.menua_search_bttn_show" equals="true")">
+							<koken:search id="OxyGen_search" class="{{ settings.menu_type }}" title="{{ language.search_tags }}" />
+						</koken:if>
+						<button class="oxygen-menu_close" title="{{ language.kcs_close_menu_ }}">{{ language.kcs_close_menu_ }}</button>
+						<koken:navigation nested="{{ settings.nav_nested }}" />
+					</nav>
+					<div id="oxygen-mask" class="oxygen-mask"></div>
+					<div class="menu">
+						<a href="javascript:void(0);" title="{{ language.kcs_open_menu_ }}" class="button-slide-in" id="oxygen-button-slide-{{ settings.menu_type }}">
+							<svg id="hamburger" alt="{{ language.kcs_menu_ }}" version="1.1" viewBox="0 0 32 32" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+								<path d="M4,10h24c1.104,0,2-0.896,2-2s-0.896-2-2-2H4C2.896,6,2,6.896,2,8S2.896,10,4,10z M28,14H4c-1.104,0-2,0.896-2,2  s0.896,2,2,2h24c1.104,0,2-0.896,2-2S29.104,14,28,14z M28,22H4c-1.104,0-2,0.896-2,2s0.896,2,2,2h24c1.104,0,2-0.896,2-2  S29.104,22,28,22z"/>
+							</svg>
+							<span class="button-menu-icon-text">{{ language.kcs_menu_ }}</span>
+						</a>
+					</div>
+				</koken:if>
+			</header>
+		<koken:if data="settings.menu_type" equals="expanded"></div></koken:if>
+		<koken:if data="settings.menu_type" equals="regular || expanded">
+			<koken:if data="settings.menua_search_bttn_show" equals="true">
+				<div class="search search-{{ settings.menu_type }}" id="search"><koken:search id="OxyGen_search" class="{{ settings.menu_type }}" title="{{ language.search_tags }}" /></div>
+			</koken:if>
+		</koken:if>
+
+		<koken:not data="location.template" equals="page || albums || sets">
+			<koken:include file="inc/components/img/exif/exif-sprite.svg" />
+		</koken:not>

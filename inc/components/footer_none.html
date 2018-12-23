@@ -1,0 +1,94 @@
+	</main>
+<koken:if data="settings.menu_type" equals="expanded">
+	<koken:asset file="inc/js/jquery.okayNav.min.js" />
+	<script>var navigation=$('#nav-expanded').okayNav();</script>
+</koken:if>
+
+<koken:include file="inc/js/slide-in-menu-footer.html" />
+<koken:asset file="inc/js/oxygen.min.js" />
+<koken:if data="settings.menu_type" equals="regular">
+	<script>OxyGen.regularMenu(OxyGen.cacheSelectors());</script>
+</koken:if>
+<koken:not data="location.template" equals="index || essay || essays || archive-essays || login || error">
+	<koken:asset file="inc/js/fastclick.min.js" />
+	<script>$(function(){FastClick.attach(document.body);});$(window).on('k-infinite-loaded',function(){FastClick.attach(document.body);});</script>
+</koken:not>
+
+<koken:if data="settings.extended_splash" equals="on">
+	<koken:if data="location.template" equals="index">
+		<koken:asset file="inc/js/fastclick.min.js" />
+		<script>$(function(){FastClick.attach(document.body);});$(window).on('k-infinite-loaded',function(){FastClick.attach(document.body);});
+		<koken:if data="settings.menu_type" equals="expanded">OxyGen.scrollTo.ScrollOffset='{{ settings.menu_header_height }}';</koken:if></script>
+		<koken:if true="settings.scroll_to_top">
+			<a href="#0" class="to-top" title="{{ language.back_to_top }}"><svg version="1.1" alt="{{ language.back_to_top }}" class="to-top-arrow" id="to-top-arrow_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 16 16" enable-background="new 0 0 16 16" xml:space="preserve"><polygon fill="#FFFFFF" points="8,2.8 16,10.7 13.6,13.1 8.1,7.6 2.5,13.2 0,10.7 "/></svg></a>
+		</koken:if>
+	</koken:if>
+</koken:if>
+
+<koken:if true="settings.scroll_to_top">
+	<koken:not data="location.template" equals="index || content || error || login">
+		<a href="#0" class="to-top" title="{{ language.back_to_top }}"><svg version="1.1" alt="{{ language.back_to_top }}" class="to-top-arrow" id="to-top-arrow_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 16 16" enable-background="new 0 0 16 16" xml:space="preserve"><polygon fill="#FFFFFF" points="8,2.8 16,10.7 13.6,13.1 8.1,7.6 2.5,13.2 0,10.7 "/></svg></a>
+	</koken:not>
+</koken:if>
+
+<koken:if data="settings.cover_styles" equals="image_cover">
+	<koken:if data="location.template" equals="page || album || set || contents || archive-contents || favorites || featured || tags || categories">
+		<koken:asset file="inc/js/jquery.fittext.min.js" />
+	</koken:if>
+</koken:if>
+
+<koken:if data="settings.reading_time" equals="block">
+	<koken:if data="location.template" equals="essay">
+		<koken:asset file="inc/js/readingTime.min.js" />
+	</koken:if>
+</koken:if>
+
+<koken:if true="settings.show_sharing_icons">
+	<koken:asset file="share.js" common="true" />
+	<koken:if data="settings.show_sharing_permalink" equals="inline">
+		<koken:asset file="inc/js/clipboard.min.js" />
+		<koken:asset file="inc/js/clipboard-tooltips.min.js" />
+	</koken:if>
+</koken:if>
+
+	<koken:not data="location.template" equals="index || albums || category || error || login || sets || tag || timeline">
+	<script>
+	<koken:if true="settings.og_includes">
+		<koken:if data="location.template" equals="page">
+			OxyGen.CSI();
+		</koken:if>
+	</koken:if>
+	<koken:if data="location.template" equals="essay">
+		<koken:if data="settings.reading_time" equals="block">
+			OxyGen.readingTime();
+		</koken:if>
+	</koken:if>
+	<koken:if data="settings.menu_type" equals="expanded">
+		<koken:if data="location.template" equals="album || set || content || contents || archive-contents || favorites || featured || tags || categories">
+			OxyGen.scrollTo.ScrollOffset='{{ settings.menu_header_height }}';
+		</koken:if>
+	</koken:if>
+	<koken:if true="settings.show_sharing_icons">
+		<koken:if data="settings.show_sharing_permalink" equals="inline">
+			(function(){var clipboard = new Clipboard('.o-clippy');clipboard.on('success', function (e) {e.clearSelection();showTooltip(e.trigger, '{{ language.kcs_copied }}!');});clipboard.on('error', function (e) {showTooltip(e.trigger, fallbackMessage(e.action));});})();
+		</koken:if>
+	</koken:if>
+	</script>
+	</koken:not>
+	<koken:include file="inc/components/loading_msg.html" />
+	<noscript class="please-enable">
+		<input type="checkbox" class="noscript-closing" id="noscript-closing">
+		<div>
+			<h3>
+				{{ site.title }} does not work very well without Javascript.
+				<span>
+					<p class="album-desc">Please enable it for {{ location.hostname }} to view {{ site.title }} in all it's glory!</p>
+				</span>
+				<label class="Closeme" for="noscript-closing">
+					Close this, use anyway
+				</label>
+			</h3>
+		</div>
+	</noscript>
+	</body>
+</html>

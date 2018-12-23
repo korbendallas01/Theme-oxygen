@@ -1,0 +1,14 @@
+<koken:if data="settings.show_disc_plugin" equals="true">
+	<koken:discussion>
+		<koken:asset file="inc/js/showHide.min.js" />
+		<script> $(window).load(function() {$('.show_hide_disq').showHide({showText: '<i class="kicon-plus-circled"></i><span class="show_hide_label" title="{{ language.kcs_show_disq }}">{{ language.kcs_show_disq }}</span>',hideText: '<i class="open kicon-plus-circled"></i><span class="show_hide_label" title="{{ language.kcs_hide_disq }}">{{ language.kcs_hide_disq }}</span>'});}); </script>
+		<div class="show_hide_disq clearfix"><a class="show_hide_disq" href="javascript:void(0)" rel=".disquis"><i class="kicon-plus-circled"></i><span class="show_hide_label" title="{{ language.kcs_show_disq }}">{{ language.kcs_show_disq }}</span></a>
+			<koken:if data="settings.show_disc_comments" equals="true">
+			<koken:discussion_count>
+				<span id="comment_count" class="comment_count">{{ discussion_count }}</span>
+			</koken:discussion_count>
+			</koken:if>
+		</div>
+		<div class="disquis clearfix" style="display: none;">{{ discussion }}</div>
+	</koken:discussion>
+</koken:if>

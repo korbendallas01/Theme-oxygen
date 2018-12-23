@@ -1,0 +1,14 @@
+<li id="content-{{ id }}" class="{{content.featured if_true="featured"}} {{content.favorite if_true="favorite"}}">
+	<koken:if true="settings.show_sharing_icons">
+		<koken:include file="inc/components/share_content.html" />
+	</koken:if>
+	<koken:link lightbox="{{ settings.use_lightbox }}" title="{{ language.view_title collate='content.title | content.filename.clean' case='title' }}">
+		<koken:img size="{{ settings.grid_asp_ratio }}" class="preview" lazy="true" alt="{{ content.title | content.filename }}" />
+		<koken:if data="settings.enable_ps_caption" equals="true">
+			<koken:include file="inc/components/photoswipe_caption.html" />
+		</koken:if>
+	</koken:link>
+	<h3 class="{{ settings.show_title }} name--truncate {{ content.featured if_true="featured" }} {{ content.favorite if_true="favorite" }}">{{ content.title | content.filename.clean case="title" }}</h3>
+	<koken:include file="inc/components/image-utilitybar.html" />
+	<koken:include file="inc/components/picinfo_grid_exif.html" />
+</li>

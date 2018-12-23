@@ -1,0 +1,32 @@
+<header class="cover inset_match">
+	<koken:background lazy="true" id="cover_bg" style="margin-top: 0;" class="hero_cover">
+		<div class="cover_inside">
+			<div class="cover_content">
+				<h1><a href="#content" data-scroll-to-key="right" class="cover_scroll_link no_b">
+					<koken:if data="location.template" equals="vimeo">{{ language.content_from_title collate="Vimeo" }}</koken:if>
+					<koken:if data="location.template" equals="contents">{{ language.content }}</koken:if>
+					<koken:if data="location.template" equals="favorites">{{ language.favorites }}</koken:if>
+					<koken:if data="location.template" equals="featured">{{ language.kcs_featured_images }}</koken:if>
+					<koken:if data="location.template" equals="tags">{{ language.view_title collate="language.tags" }}</koken:if>
+					<koken:if data="location.template" equals="categories">{{ language.view_title collate="language.categories" }}</koken:if>
+					<koken:if data="location.template" equals="archive-contents">
+						<koken:load>
+							<koken:if data="archive.type" equals="tag || category">
+								{{ language.view_all_of_title collate="archive.title" }}
+								<koken:else>
+								{{ language.content }} {{ archive.title }}
+							</koken:if>
+						</koken:load>
+					</koken:if>
+				</a></h1>
+				<koken:if data="settings.show_sharing_icons" equals="true">
+					<div class="social social_cover">
+						<koken:include file="inc/components/share-links-icons.html" />
+					</div>
+				</koken:if>
+			</div>
+			<a id="cover_scroll" href="#content" data-scroll-to-key="right" class="cover_scroll_link no_b bounce"><i class="icon-{{ settings.album_cover_downarrow }}-down"></i></a>
+		</div>
+	</koken:background>
+</header>
+<koken:include file="inc/cover.html" />

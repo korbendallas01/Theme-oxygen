@@ -1,0 +1,11 @@
+<koken:if data="settings.essay_asside_twitter" equals="true">
+	<koken:not empty="profile.twitter">
+		<div class="essay_twitter_feed clearfix">
+			<a class="twitter-timeline" href="https://twitter.com/{{ profile.twitter }}"
+			data-widget-id="697076012945928192"
+			data-screen-name="{{ profile.twitter }}"
+			>Tweets av @{{ profile.twitter }}</a>
+			<script>$(window).load( function(){!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");});</script>
+		</div>
+	</koken:not>
+</koken:if>

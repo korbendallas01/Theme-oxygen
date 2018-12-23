@@ -1,0 +1,11 @@
+<koken:if data="settings.show_feat_img" equals="true">
+	<koken:not empty="featured_image">
+		<koken:featured_image>
+			<header class="page_cover cover_drop_shadow">
+				<koken:background lazy="true" id="cover_bg" style="height:100%;"></koken:background>
+			</header>
+		</koken:featured_image>
+	<koken:else>
+		<header class="no_page_cover"></header>
+	</koken:not>
+</koken:if>

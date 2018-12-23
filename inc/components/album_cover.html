@@ -1,0 +1,62 @@
+<header class="cover inset_match">
+	<koken:background lazy="true" id="cover_bg" class="hero_cover">
+		<div class="cover_inside cover_style_1">
+			<div class="cover_content">
+				<koken:if true="settings.album_cover_time || settings.album_cover_cats">
+					<div class="cover_top">
+				</koken:if>
+				<koken:if true="settings.album_cover_time">
+					<koken:time relative="{{ settings.show_event_date_relative }}" class="cover_time" />
+				</koken:if>
+				<koken:if true="settings.album_cover_cats">
+					<koken:categories>
+						<span class="categories">{{ language.posted_in }}
+							<koken:loop separator=", ">
+								<koken:link>{{ category.title case="title" }}</koken:link>
+							</koken:loop>
+						</span>
+					</koken:categories>
+				</koken:if>
+				<koken:if true="settings.album_cover_time || settings.album_cover_cats">
+					</div>
+				</koken:if>
+				<koken:if true="settings.album_cover_title">
+					<h1>
+						<a href="#content" data-scroll-to-key="right" class="cover_scroll_link no_b">{{ album.title }}</a>
+						<koken:filtered>
+							<span class="filter_count_parent">
+								<koken:loop>
+									<koken:if data="{{ filter.title }}" equals="Date">
+										<span class="filter_count_touch">{{ filter.count }} {{ language.of }} {{ album.counts.total }} / </span>
+										<span class="filter_count">{{ filter.count }} {{ filter.count.length plural="language.new2" singular="language.new" }} {{ filter.count.length plural="language.items" singular="language.item" }} {{ language.added }} {{ language.kcs_in_ }} {{ filter.value }} / </span><koken:link bind_to_key="home" to="album" filter:id="{{ album.id }}" title="View {{ album.title }}">{{ language.view_entire_album }}</koken:link>
+									</koken:if>
+								</koken:loop>
+							</span>
+						</koken:filtered>
+					</h1>
+				</koken:if>
+				<koken:if true="settings.album_cover_description">
+					{{ album.description paragraphs="true" }}
+				</koken:if>
+				<koken:if true="settings.album_cover_tags">
+					<koken:tags>
+						<span class="tags">{{ language.tags }}
+							<koken:loop separator=", ">
+								<koken:link><svg class="icon-exif" id="icon-exif-tag"><use xlink:href="#icon-exif-tag" /></svg>{{ tag.title case="title" }}</koken:link>
+							</koken:loop>
+						</span>
+					</koken:tags>
+				</koken:if>
+				<koken:if true="settings.show_sharing_icons || settings.album_detail_show_dl">
+					<div class="social social_cover">
+						<koken:if data="settings.show_sharing_icons" equals="true">
+							<koken:include file="inc/components/share-links-icons.html" />
+						</koken:if>
+					</div>
+				</koken:if>
+			</div> <!-- /.cover_content -->
+			<a id="cover_scroll" href="#content" data-scroll-to-key="right" class="cover_scroll_link no_b bounce"><i class="icon-{{ settings.album_cover_downarrow }}-down"></i></a>
+		</div> <!-- /.cover_inside -->
+	</koken:background>
+</header>
+<koken:include file="inc/cover.html" />

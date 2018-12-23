@@ -1,0 +1,13 @@
+<koken:loop>
+	<koken:content_image>
+		<koken:link lightbox="{{ settings.use_lightbox }}" title="{{ language.view }} {{ content.title | content.filename }}">
+			<koken:img lazy="true" class="lists-singel" />
+			<koken:if data="settings.enable_ps_caption" equals="true">
+				<koken:include file="inc/components/photoswipe_caption.html" />
+			</koken:if>
+		</koken:link>
+	</koken:content_image>
+	<koken:content_video>
+		<koken:video class="preview" />
+	</koken:content_video>
+</koken:loop>

@@ -1,0 +1,75 @@
+<koken:parent>
+	<koken:variable name="previous_label" value="{{ language.previous }}" />
+	<koken:variable name="next_label" value="{{ language.next }}" />
+<koken:else>
+	<koken:variable name="previous_label" value="{{ language.newer }}" />
+	<koken:variable name="next_label" value="{{ language.older }}" />
+</koken:parent>
+<div class="contentnav-wrapper">
+	<div class="contentnav-previous">
+		<koken:previous>
+			<koken:link bind_to_key="left" title="[<-] {{ language.view_previous }}">
+				<i class="icon-one-left"></i><span class="contentnav-previous--label">{{ previous_label }}</span>
+			</koken:link>
+		</koken:previous>
+	</div>
+	<div class="contentnav-parent">
+		<koken:parent>
+			<span class="contentnav-parent--label">
+				<koken:link to="album" filter:id="{{ album.id }}" data-bind-to-key="home" class="contentnav-parent--label---parentlink" title="{{ language.view_entire_album }}">
+					{{ album.title }}
+				</koken:link>
+				<koken:load>
+					<span class="contentnav-parent--label---space">:&nbsp;</span>
+					<a href="#img-info" data-scroll-to-key="down" class="scrollTo contentnav-parent--label---titlelink" title="{{ language.view }} {{ item_info }}">{{ content.title | content.filename.clean case="title" }}</a>
+				</koken:load>
+			</span>
+			&nbsp;<span class="contentnav-parent--contextnr">({{ _parent.content.context.position }} {{ language.of }} {{ album.counts.total }})</span>
+		<koken:else>
+			<koken:context>
+				<span class="contentnav-parent--label">
+					<koken:if data="context.type" equals="favorite">
+						<koken:link to="favorites" data-bind-to-key="home" class="contentnav-parent--label---parentlink" title="{{ language.view_everything_in_title collate='language.favorites' }}">
+							{{ language.favorites }}
+						</koken:link>
+					<koken:else>
+						<koken:if data="context.type" equals="feature">
+							<koken:link to="featured" data-bind-to-key="home" class="contentnav-parent--label---parentlink" title="{{ language.view_everything_in_title collate='language.kcs_featured_images' }}">
+								{{ language.kcs_featured_images }}
+							</koken:link>
+						<koken:else>
+							<koken:if data="context.type" equals="tag">
+								<koken:link data-bind-to-key="home" class="contentnav-parent--label---parentlink" title="{{ language.view_everything_in_title collate='context.title' }}">
+									<svg class="icon-exif" id="icon-exif-tag"><use xlink:href="#icon-exif-tag" /></svg>{{ context.title case="title" }}
+								</koken:link>
+							<koken:else>
+								<koken:link data-bind-to-key="home" class="contentnav-parent--label---parentlink" title="{{ language.view_everything_in_title collate='context.title' }}">
+									{{ context.title case="title" }}
+								</koken:link>
+							</koken:if>
+						</koken:if>
+					</koken:if>
+					<koken:load>
+					<span class="contentnav-parent--label---space">:&nbsp;</span>
+					<a href="#img-info" data-scroll-to-key="down" class="scrollTo contentnav-parent--label---titlelink" title="{{ language.view }} {{ item_info }}">{{ content.title | content.filename.clean case="title" }}</a></koken:load>
+				</span>
+				&nbsp;<span class="contentnav-parent--contextnr">({{ context.position }} {{ language.of }} {{ context.total }})</span>
+			<koken:else>
+				<span class="contentnav-parent--label">
+					<koken:link to="contents" data-bind-to-key="home" class="contentnav-parent--label---parentlink" title="{{ language.view_everything_in_title collate='language.content' }}">
+						{{ language.content }}
+					</koken:link>
+					<span class="contentnav-parent--label---space">:&nbsp;</span>
+					<a href="#img-info" data-scroll-to-key="down" class="scrollTo contentnav-parent--label---titlelink" title="{{ language.view }} {{ item_info }}">{{ content.title | content.filename.clean case="title" }}</a>
+				</span>
+			</koken:context>
+		</koken:parent>
+	</div>
+	<div class="contentnav-next">
+		<koken:next>
+			<koken:link bind_to_key="right" title="{{ language.view_next }} [->]">
+				<span class="contentnav-next--label">{{ next_label }}</span><i class="icon-one-right"></i>
+			</koken:link>
+		</koken:next>
+	</div>
+</div>

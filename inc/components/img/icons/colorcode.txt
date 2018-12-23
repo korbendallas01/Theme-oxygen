@@ -1,0 +1,34 @@
+ICONS:			www.iconsdb.com
+
+COLORS:			http://brandcolors.net/
+				https://www.competethemes.com/blog/social-media-colors/
+
+
+Base color		#2B2B2B
+
+______________BRAND COLORS_____________
+twitter:		#00aced		rgb(0, 172, 237)
+facebook:		#3b5998		rgb(59, 89, 152)
+googleplus:		#dd4b39		rgb(221, 75, 57)
+pinterest:		#cb2027		rgb(203, 32, 39)
+linkedin:		#007bb6		rgb(0, 123, 182)
+youtube:		#bb0000		rgb(187, 0, 0)
+vimeo:			#aad450		rgb(170, 212, 80)
+tumblr:			#32506d		rgb(50, 80, 109)
+instagram:		#517fa4		rgb(81, 127, 164)
+flickr:			#ff0084		rgb(255, 0, 132)
+dribbble:		#ea4c89		rgb(234, 76, 137)
+quora:			#a82400		rgb(168, 36, 0)
+foursquare:		#0072b1		rgb(0, 114, 177)
+forrst:			#5B9A68		rgb(91, 154, 104)
+vk:				#45668e		rgb(69, 102, 142)
+wordpress:		#21759b		rgb(33, 117, 155)
+stumbleupon:	#EB4823		rgb(235, 72, 35)
+yahoo:			#7B0099		rgb(123, 0, 153)
+blogger:		#fb8f3d		rgb(251, 143, 61)
+soundcloud:		#ff3a00		rgb(255, 58, 0)
+
+RSS:			#F26522
+Xing:			#026466
+500px:			#0099E5
+Skype:			#00AFF0

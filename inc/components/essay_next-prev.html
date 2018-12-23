@@ -1,0 +1,27 @@
+<div class="essay-pagination" id="essay-pagination-{{ settings.footer_setting }}">
+<koken:next>
+	<koken:not empty="featured_image">
+		<koken:background lazy="true" id="essay-bottom-prev" class="essay-bottom-previous essay-nav-previous">
+			<koken:include file="inc/components/essay-next.html" />
+		</koken:background>
+	<koken:else>
+		<div class="essay-bottom-previous essay-nav-previous" style="background-color:black;">
+			<koken:include file="inc/components/essay-next.html" />
+		</div>
+	</koken:not>
+</koken:next>
+<div class="essay-bottom-essays" style="display:none;width:1px;height:1px;overflow:hidden;">
+	<koken:link data-bind-to-key="up" to="essays" title="{{ language.view_all_essays }}">{{ language.view_all_essays }}</koken:link>
+</div>
+<koken:previous>
+	<koken:not empty="featured_image">
+		<koken:background lazy="true" id="essay-bottom-next" class="essay-bottom-next essay-nav-next">
+			<koken:include file="inc/components/essay-previous.html" />
+		</koken:background>
+	<koken:else>
+		<div class="essay-bottom-next essay-nav-next" style="background-color:black;">
+			<koken:include file="inc/components/essay-previous.html" />
+		</div>
+	</koken:not>
+</koken:previous>
+</div>

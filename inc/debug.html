@@ -1,0 +1,50 @@
+<style>
+	div.xdebug{
+		display:none;
+		position:absolute;
+		top:0;
+		left:50%;
+		transform: translate(-50%);
+		max-width:50%;
+		background:#fff;
+		border: 1px solid;
+		border-radius: 5px;
+		padding:1em;
+		margin: 1em 0;
+		z-index: 999;
+	}
+	.xdebug p{
+		margin-bottom: 1.5rem;
+	}
+	div.xdebug-site{
+		display: none;
+	}
+	div.xdebug pre.xdebug-var-dump{
+		white-space: pre-wrap;
+	}
+</style>
+<div class="xdebug">
+	<h1>{{ site.title }} ({{ settings.language }})</h1>
+	<div class="xdebug-site">{{ site debug="true" }}</div>
+	<hr />
+	<h2>{{ location.template }}:{{ location.here }}</h2>
+	<p>{{ language.permalink }}: <koken:permalink /></p>
+	<p>site_url/location.here: {{ location.site_url }}{{ location.here }}</p>
+	<koken:if data="location.template" equals="album">{{ album debug="true"}}</koken:if>
+	<koken:if data="location.template" equals="albums">{{ albums debug="true"}}</koken:if>
+	<koken:if data="location.template" equals="categories">{{ categories debug="true"}}</koken:if>
+	<koken:if data="location.template" equals="category">{{ category debug="true"}}</koken:if>
+	<koken:if data="location.template" equals="content">{{ content debug="true"}}</koken:if>
+	<koken:if data="location.template" equals="contents">{{ contents debug="true"}}</koken:if>
+	<koken:if data="location.template" equals="error">{{ error debug="true"}}</koken:if>
+	<koken:if data="location.template" equals="essay">{{ essay debug="true"}}</koken:if>
+	<koken:if data="location.template" equals="essays">{{ essays debug="true"}}</koken:if>
+	<koken:if data="location.template" equals="favorites">{{ favorites debug="true"}}</koken:if>
+	<koken:if data="location.template" equals="login">{{ login debug="true"}}</koken:if>
+	<koken:if data="location.template" equals="page">{{ page debug="true"}}</koken:if>
+	<koken:if data="location.template" equals="set">{{ album debug="true"}}</koken:if>
+	<koken:if data="location.template" equals="sets">{{ sets debug="true"}}</koken:if>
+	<koken:if data="location.template" equals="tag">{{ tag debug="true"}}</koken:if>
+	<koken:if data="location.template" equals="tags">{{ tags debug="true"}}</koken:if>
+	<koken:if data="location.template" equals="timeline">{{ timeline debug="true"}}</koken:if>
+</div>

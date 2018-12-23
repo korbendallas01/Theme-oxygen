@@ -1,0 +1,54 @@
+<koken:if data="settings.footer_setting" equals="show_footer">
+	<div class="oxygen-footer-menu-wrapper extended_splash_{{ settings.extended_splash }}">
+		<div class="oxygen-footer-menu">
+			<koken:navigation group="footer" fallbacktext="No footer links found" />
+		</div>
+	</div>
+</koken:if>
+<koken:not data="settings.footer_setting" equals="no_footer">
+	<oxygen-footer class="oxygen-{{ settings.footer_setting }} extended_splash_{{ settings.extended_splash }}">
+		<oxygen-footer-inside>
+			<koken:not empty="settings.address_avatar_img" || "(data="settings.footer_setting" equals="no_footer && tiny_footer")">
+				<koken:if empty="settings.address_contact_page_id">
+					<!-- We dont have a page id for the contact page -->
+					<a href="#" class="oxygen-circle oxygen-left"  title="{{ settings.address_name_prefix }}&nbsp;{{ profile.name }}">
+						<img height="32" width="32" src="{{ settings.address_avatar_img }}" alt="{{ profile.name }}">
+					</a>
+				<koken:else>
+					<!-- We got the page id -->
+					<koken:link to="page" filter:id="{{ settings.address_contact_page_id }}" class="oxygen-circle oxygen-left" title="{{ settings.address_name_prefix }}&nbsp;{{ profile.name }}">
+						<img height="32" width="32" src="{{ settings.address_avatar_img }}" alt="{{ profile.name }}">
+					</koken:link>
+				</koken:if>
+			</koken:not>
+			<div class="oxygen-tagline oxygen-left">
+				<p>
+					<koken:if empty="settings.address_contact_page_id">
+						<!-- We dont have a page id for the contact page -->
+						<koken:include file="inc/components/addressformat/format.html" />
+					<koken:else>
+						<!-- We got the page id -->
+						<koken:link to="page" filter:id="{{ settings.address_contact_page_id }}" class="oxygen-tag-copy-link" title="{{ settings.address_name_prefix }}&nbsp;{{ profile.name }}">
+							<koken:include file="inc/components/addressformat/format.html" />
+						</koken:link>
+					</koken:if>
+				</p>
+			</div>
+			<div class="oxygen-copyright oxygen-right">
+				<p>
+					<koken:if empty="settings.address_copyright_page_id">
+						{{ site.copyright }}
+					<koken:else>
+						<koken:link to="page" filter:id="{{ settings.address_copyright_page_id }}" title="{{ site.copyright }}" class="oxygen-tag-copy-link">{{ site.copyright }}</koken:link>
+					</koken:if>
+				</p>
+			</div>
+			<div class="oxygen-social">
+				<div class="oxygen-footer-social-menu">
+					<koken:navigation group="footer_social" fallbacktext="No Social footer links found" class="rotateN" />
+				</div>
+			</div>
+		</oxygen-footer-inside>
+	</oxygen-footer>
+</koken:not>
+<koken:include file="inc/components/footer_none.html" />

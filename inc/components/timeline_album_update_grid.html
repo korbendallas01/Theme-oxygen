@@ -1,0 +1,34 @@
+<koken:if condition="{{ content.length }} > 2">
+<div class="timeline-grid clearfix">
+	<ul class="grid">
+	<koken:loop>
+		<li>
+			<koken:link lightbox="{{ settings.use_lightbox }}" title="{{ language.view }} {{ content.title | content.filename.clean case='title' }}" class="grid-timeL">
+				<koken:img lazy="true" size="{{ settings.grid_asp_ratio }}" />
+				<koken:if data="settings.enable_ps_caption" equals="true">
+					<koken:include file="inc/components/photoswipe_caption.html" />
+				</koken:if>
+			</koken:link>
+			<h3 class="{{ settings.show_title }} name--truncate">{{ content.title | content.filename.clean case="title" }}</h3>
+		</li>
+	</koken:loop>
+	</ul>
+</div>
+<koken:else>
+	<koken:loop>
+		<koken:content_image>
+			<koken:link lightbox="{{ settings.use_lightbox }}" title="{{ language.view }} {{ content.title | content.filename.clean case='title' }}">
+				<koken:img lazy="true" class="lists-singel" />
+				<koken:if data="settings.enable_ps_caption" equals="true">
+					<koken:include file="inc/components/photoswipe_caption.html" />
+				</koken:if>
+			</koken:link>
+		</koken:content_image>
+		<koken:content_video>
+			<koken:video class="preview" />
+			<koken:link lightbox="{{ settings.use_lightbox }}" title="{{ language.view }} {{ content.title | content.filename.clean case='title' }}">
+				<h4>{{ content.title | content.filename.clean case='title' }}</h4>
+			</koken:link>
+		</koken:content_video>
+	</koken:loop>
+</koken:if>

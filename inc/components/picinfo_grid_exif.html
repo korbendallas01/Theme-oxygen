@@ -1,0 +1,4 @@
+<koken:if true="settings.show_exif_album && settings.show_exif">
+	<koken:exif><koken:not empty="exif.model"><div class="exif_show" title="{{ language.kcs_camera_info_ }}"><svg class="icon-exif" id="icon-exif-camera"><use xlink:href="#icon-exif-camera" /></svg></div></koken:not></koken:exif>
+	<div class="exif_album"><koken:include file="inc/components/picinfo_exif.html" /></div>
+</koken:if>

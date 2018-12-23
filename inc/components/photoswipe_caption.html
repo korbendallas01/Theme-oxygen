@@ -1,0 +1,26 @@
+<koken:if data="settings.enable_ps_caption" equals="true">
+	<koken:if data="settings.display_ps_caption" equals="ps_caption">
+		<div class="item-caption" style="display: none">{{ content.caption }}</div>
+	</koken:if>
+	<koken:if data="settings.display_ps_caption" equals="ps_exif">
+		<div class="item-caption" style="display: none">
+			<koken:time relative="{{ settings.show_event_date_relative }}" />
+			<koken:exif>
+				<koken:not empty="exif.make">
+					<koken:not data="exif.make.raw" equals="Canon || 'NIKON CORPORATION' || Apple || PENTAX || 'Sinar AG'">
+						<koken:if data="exif.make.raw" equals="OLYMPUS IMAGING CORP.">
+							Olympus,
+						<koken:else>
+							{{ exif.make }},
+						</koken:if>
+					</koken:not>
+				</koken:not>
+				<koken:not empty="exif.model">{{ exif.model }},</koken:not>
+				<koken:not empty="exif.exposure">{{ exif.exposure }},</koken:not>
+				<koken:not empty="exif.aperture">{{ exif.aperture }},</koken:not>
+				<koken:not empty="exif.focal_length">{{ exif.focal_length }},</koken:not>
+				<koken:not empty="exif.iso_speed_ratings">{{ exif.iso_speed_ratings.raw }}</koken:not>
+			</koken:exif>
+		</div>
+	</koken:if>
+</koken:if>

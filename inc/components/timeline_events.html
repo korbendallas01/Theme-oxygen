@@ -1,0 +1,88 @@
+<koken:loop>
+	<koken:event>
+		<li id="content-{{ id }}">
+			<koken:event_album>
+				<div class="timeline-section-header">
+					<h2 class="timeline-time"><koken:link to="date" title="{{ language.view_everything_published_this_day }}"><koken:time relative="{{ settings.show_event_date_relative }}" /></koken:link></h2>
+					<h3 class="{{ album.featured if_true="featured" }}"><koken:link title="{{ language.view_all_content_in_title collate='album.title' }}"><koken:if data="album.album_type" equals="set">{{ labels.set.singular }}: </koken:if>{{ album.title }}</koken:link></h3>
+					{{ album.summary | album.description paragraphs="true" }}
+				</div>
+				<koken:not empty="covers">
+					<koken:link title="{{ language.view_title collate='album.title' }}" class="no-cart">
+						<koken:covers>
+							<koken:img size="{{ settings.grid_asp_ratio }}" lazy="true" class="no-cart" />
+						</koken:covers>
+					</koken:link>
+				<koken:else>
+					<koken:note>
+						<h4 class="nocover">You need to assign a cover for {{ album.title }} in the library console!</h4>
+					</koken:note>
+				</koken:not>
+				<koken:include file="inc/components/timeline_album_new_{{ settings.timeline_new_view }}.html" />
+				<koken:include file="inc/components/tags-cats-loop.html" />
+			</koken:event_album>
+
+			<koken:event_album_update>
+				<div class="timeline-section-header">
+					<h2 class="timeline-time"><koken:link to="date" title="{{ language.view_everything_published_this_day }}"><koken:time relative="{{ settings.show_event_date_relative }}" /></koken:link></h2>
+					<h3 class="{{ album.featured if_true="featured" }}">
+						<koken:link filter:order_by="published_on" filter:year="{{ date date_format='Y' }}" filter:month="{{ date date_format='m' }}" title="{{ language.view_title collate='album.title' }}">
+							<koken:if data="album.album_type" equals="set">{{ labels.set.singular }}: </koken:if>{{ album.title }} ({{ content.length }} {{ content.length plural="language.new2" singular="language.new" }} {{ content.length plural="language.items" singular="language.item" }})
+						</koken:link>
+					</h3>
+					{{ album.summary | album.description paragraphs="true" }}
+				</div>
+				<koken:include file="inc/components/timeline_album_update_{{ settings.timeline_update_view }}.html" />
+				<koken:include file="inc/components/tags-cats-loop.html" />
+			</koken:event_album_update>
+
+			<koken:event_content>
+				<!-- New content -->
+				<div class="timeline-section-header">
+					<h2 class="timeline-time"><koken:link to="date" title="{{ language.view_everything_published_this_day }}"><koken:time relative="{{ settings.show_event_date_relative }}" /></koken:link></h2>
+					<h3 class="{{ content.featured if_true="featured" }} {{ content.favorite if_true="favorite" }}">
+						<koken:link lightbox="{{ settings.use_lightbox }}" title="{{ language.view_title collate='content.title | content.filename.clean' case='title' }}">
+							{{ content.title | content.filename.clean case="title" }}
+						</koken:link>
+					</h3>
+				</div>
+				<koken:content_image>
+					<koken:link lightbox="{{ settings.use_lightbox }}" title="{{ language.view_title collate='content.title | content.filename.clean' case='title' }}">
+						<koken:img class="preview lists-singel" alt="{{ content.title | content.filename.clean case='title' }}" lazy="true" />
+						<koken:if data="settings.enable_ps_caption" equals="true">
+							<koken:include file="inc/components/photoswipe_caption.html" />
+						</koken:if>
+					</koken:link>
+				</koken:content_image>
+				<koken:content_video>
+					<koken:video class="preview" />
+				</koken:content_video>
+				<koken:not empty="content.caption"><div class="content-caption">{{ content.caption paragraphs="true" }}</div></koken:not>
+				<koken:include file="inc/components/tags-cats-loop.html" />
+			</koken:event_content>
+
+			<koken:event_essay>
+				<!-- New {{ labels.essay.singular }} -->
+				<h2 class="timeline-time"><koken:link to="date" title="{{ language.view_everything_published_this_day }}"><koken:time relative="{{ settings.show_event_date_relative }}" /></koken:link></h2>
+				<h3 class="{{ essay.featured if_true="featured" }}">
+					<koken:link title="{{ language.view_title collate='essay.title' }}">
+						{{ essay.title }}
+					</koken:link>
+					<koken:if true="settings.show_disc_plugin && settings.show_disc_comments && settings.timline_disc_comments">
+						<span class="comment_count_list" title="{{ language.kcs_show_disq }}">
+							<koken:discussion_count>{{ discussion_count }}</koken:discussion_count>
+						</span>
+					</koken:if>
+				</h3>
+				<koken:link title="{{ language.read_title collate='essay.title' }}">
+					<koken:featured_image>
+						<koken:img size="1.5:0.3" class="no-cart" lazy="true" />
+					</koken:featured_image>
+					<div class="essay-excerpt">{{ essay.excerpt paragraphs="true" }}</div>
+				</koken:link>
+				<koken:include file="inc/components/tags-cats-loop.html" />
+			</koken:event_essay>
+		</li>
+		<div class="timeline-divider"></div>
+	</koken:event>
+</koken:loop>

@@ -1,0 +1,10 @@
+<script>
+	function contentMap() {var myLatLng = {lat: {{ geolocation.latitude }}, lng: {{ geolocation.longitude }}};var map = new google.maps.Map(document.getElementById('OxyGenMap'), {zoom: 15,center: myLatLng,mapTypeControl: true,mapTypeId: google.maps.MapTypeId.HYBRID,mapTypeControlOptions: {style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,position: google.maps.ControlPosition.TOP_CENTER},fullscreenControll: true});var image = '{{ location.root_folder }}{{ location.theme_path }}/inc/components/img/map-marker.png';var marker = new google.maps.Marker({position: myLatLng,map: map,icon: image,title: '{{ content.title | content.filename.clean case="title" }}'});}
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDevGS1FPhdua5BP69qDJHgwZaGpAM3mb0&v=3.exp&callback=contentMap"></script>
+<div id="openMap" class="OxyGenModal">
+	<div>
+		<a href="#close" title="{{ language.close_lightbox }}" id="closeModal" class="OxyGenModalClose toggleModal">X</a>
+		<div id="OxyGenMap"></div>
+	</div>
+</div>

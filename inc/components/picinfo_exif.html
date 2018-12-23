@@ -1,0 +1,42 @@
+<koken:exif>
+	<koken:not empty="exif.model && exif.lens && exif.aperture && exif.exposure && exif.iso_speed_ratings && exif.focal_length && exif.flash">
+		<div class="exif">
+			<h1 class="picinfo">{{ language.kcs_camera_info_ }}</h1>
+			<ul class="exifdata">
+				<koken:if true="settings.show_model">
+					<koken:not empty="exif.model">
+						<li id="exif-model" class="exifdetail" title="{{ language.kcs_exif_camera }}"><svg class="icon-exif" id="icon-exif-camera"><use xlink:href="#icon-exif-camera" /></svg>
+							<koken:not data="exif.make.raw" equals="Canon || 'NIKON CORPORATION' || Apple || PENTAX || 'Sinar AG'">
+								<span class="exif-make">
+									<koken:if data="exif.make.raw" equals="OLYMPUS IMAGING CORP.">
+										Olympus
+									<koken:else>
+										{{ exif.make }}
+									</koken:if>
+								</span>
+							</koken:not>
+							{{ exif.model }}</li>
+					</koken:not>
+				</koken:if>
+				<koken:if true="settings.show_lens">
+					<koken:not empty="exif.lens"><li id="exif-lens" class="exifdetail" title="{{ language.kcs_exif_lens }}"><svg class="icon-exif" id="icon-exif-lens"><use xlink:href="#icon-exif-lens" /></svg> {{ exif.lens }}</li></koken:not>
+				</koken:if>
+				<koken:if true="settings.show_aperture">
+					<koken:not empty="exif.aperture"><li id="exif-aperture" class="exifdetail" title="{{ language.kcs_exif_aperture }}"><svg class="icon-exif" id="icon-exif-aperture"><use xlink:href="#icon-exif-aperture" /></svg> {{ exif.aperture }}</li></koken:not>
+				</koken:if>
+				<koken:if true="settings.show_exposure">
+					<koken:not empty="exif.exposure"><li id="exif-exposure" class="exifdetail" title="{{ language.kcs_exif_exposure }}"><svg class="icon-exif" id="icon-exif-exposure"><use xlink:href="#icon-exif-exposure" /></svg> {{ exif.exposure }}</li></koken:not>
+				</koken:if>
+				<koken:if true="settings.show_iso">
+					<koken:not empty="exif.iso_speed_ratings"><li id="exif-iso" class="exifdetail" title="{{ language.kcs_exif_iso }}"><svg class="icon-exif" id="icon-exif-iso"><use xlink:href="#icon-exif-iso" /></svg> {{ exif.iso_speed_ratings.raw }}</li></koken:not>
+				</koken:if>
+				<koken:if true="settings.show_focal_length">
+					<koken:not empty="exif.focal_length"><li id="exif-focallength" class="exifdetail" title="{{ language.kcs_exif_focal_length }}"><svg class="icon-exif" id="icon-exif-focal_length"><use xlink:href="#icon-exif-focal_length" /></svg> {{ exif.focal_length }}</li></koken:not>
+				</koken:if>
+				<koken:if true="settings.show_flash">
+					<koken:not empty="exif.flash"><li id="exif-flash" class="exifdetail" title="{{ language.kcs_exif_flash }}"><svg class="icon-exif" id="icon-exif-flash"><use xlink:href="#icon-exif-flash" /></svg> {{ exif.flash }}</li></koken:not>
+				</koken:if>
+			</ul>
+		</div>
+	</koken:not>
+</koken:exif>

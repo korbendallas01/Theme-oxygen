@@ -1,0 +1,13 @@
+<koken:if data="settings.address_name" equals="true">{{ profile.name }}<br /></koken:if>
+<koken:not empty="settings.address_street_info">{{ settings.address_street_info }}<br /></koken:not>
+<koken:if data="settings.address_format" equals="uk || us">
+	<!-- United Kingdom, USA -->
+	<koken:not empty="settings.address_city_info">{{ settings.address_city_info }},</koken:not>
+	<koken:not empty="settings.address_postal_code"> {{ settings.address_postal_code }}</koken:not>
+	<koken:not empty="settings.address_country_info"> {{ settings.address_country_info }}</koken:not>
+<koken:else>
+	<!-- EU -->
+	<koken:not empty="settings.address_postal_code">{{ settings.address_postal_code }} </koken:not>
+	<koken:not empty="settings.address_city_info">{{ settings.address_city_info }},</koken:not>
+	<koken:not empty="settings.address_country_info"> {{ settings.address_country_info }}</koken:not>
+</koken:if>

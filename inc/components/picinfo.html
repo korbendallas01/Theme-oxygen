@@ -1,0 +1,115 @@
+<div class="picinfocontainer clearfix" id="img-info">
+	<div class="picinfo-left">
+		<koken:not empty="content.caption">
+			<div class="bild-caption">
+				<h1 class="picinfo">{{ language.kcs_caption_ }}</h1>
+				<p class="picinfosub">{{ content.title | content.filename.clean case="title" }}</p>
+				{{ content.caption paragraphs="true" }}
+			</div>
+		</koken:not>
+		<koken:if true="settings.show_tags">
+			<koken:tags>
+				<div class="taggs">
+					<h1 class="picinfo">{{ language.tags }}</h1>
+					<ul class="taggsdata">
+						<koken:loop separator=" ">
+							<li id="tag" class="tagdetail">
+								<koken:link title="{{ language.view_all_content_in_title collate='tag.title' }}">
+									<svg class="icon-exif" id="icon-exif-tag"><use xlink:href="#icon-exif-tag" /></svg> {{ tag.title case="title" }}
+								</koken:link>
+							</li>
+						</koken:loop>
+					</ul>
+				</div>
+			</koken:tags>
+		</koken:if>
+		<koken:if true="settings.show_categories">
+			<koken:categories>
+				<div class="taggs">
+					<h1 class="picinfo">{{ language.categories }}</h1>
+					<ul class="taggsdata">
+						<koken:loop separator=" ">
+							<li id="cats" class="tagdetail">
+								<koken:link to="category" title="{{ language.view_all_content_in_title collate='category.title' }}">
+									<svg class="icon-exif" id="icon-exif-category"><use xlink:href="#icon-exif-category" /></svg> {{ category.title case="title" }}
+								</koken:link>
+							</li>
+						</koken:loop>
+					</ul>
+				</div>
+			</koken:categories>
+		</koken:if>
+	</div>
+	<div class="picinfo-right">
+		<koken:if true="settings.show_model || settings.show_lens || settings.show_aperture || settings.show_exposure || settings.show_iso || settings.show_focal_length || settings.show_flash">
+			<koken:include file="inc/components/picinfo_exif.html" />
+		</koken:if>
+		<koken:if true="settings.show_uploaded_on || settings.show_source_url || settings.show_captured_on || settings.show_geolocation || settings.show_og_alsoin || settings.show_byline || settings.show_license || settings.show_download || settings.show_album_download">
+			<div class="bildinfo">
+				<h1 class="picinfo">{{ item_info }}</h1>
+				<ul class="bildinfodata">
+					<li class="picinfodetail"><span class="picinfosub">{{ language.kcs_name_ }}</span>  {{ content.title | content.filename.clean case="title" }}</li>
+					<koken:if true="settings.show_rating">
+						<koken:rating><li class="picinfodetail"><span class="picinfosub">{{ language.kcs_likes_ }}:</span> {{ rating }}</li></koken:rating>
+					</koken:if>
+					<koken:if true="settings.show_uploaded_on">
+						<koken:not empty="content.uploaded_on"><li class="picinfodetail"><span class="picinfosub">{{ language.kcs_uploaded_ }}</span> {{ content.uploaded_on }}</li></koken:not>
+					</koken:if>
+					<koken:if true="settings.show_source_url">
+						<koken:not empty="content.source.url"><li class="picinfodetail"><span class="picinfosub">{{ language.kcs_source }}</span> <a href="{{ content.source.url }}" onclick="return !window.open(this.href);" title="{{ language.view_at_title collatte="content.source.title" }}">{{ content.source.title }}</a></li></koken:not>
+					</koken:if>
+					<koken:if true="settings.show_captured_on">
+						<koken:not empty="content.captured_on"><li class="picinfodetail"><span class="picinfosub">{{ language.kcs_captured_ }}</span> {{ content.captured_on }}</li></koken:not>
+					</koken:if>
+					<koken:if true="settings.show_geolocation">
+						<koken:not empty="geolocation.latitude && geolocation.longitude">
+							<koken:include file="inc/components/picinfo_map_modal.html" />
+							<li class="picinfodetail" id="og_viewmap"><span class="picinfosub">{{ language.view_on_a_map }}:</span> <a href="#openMap" class="picinfosub toggleModal" title="{{ language.view_on_a_map }}">{{ language.view }}</a></li>
+						</koken:not>
+					</koken:if>
+					<koken:if true="settings.show_og_alsoin">
+						<koken:albums><li class="picinfodetail" id="og_alsoin"><span class="picinfosub">{{ language.kcs_also_in_ }}</span> <koken:loop separator=" "><koken:link class="picinfosub" title="{{ language.view_more_in }}: {{ album.title }}">{{ album.title }}</koken:link></koken:loop></li></koken:albums>
+					</koken:if>
+					<koken:if true="settings.show_byline">
+						<koken:iptc><koken:not empty="iptc.byline"><li class="picinfodetail"><span class="picinfosub">{{ language.kcs_photographer_ }}</span> {{ iptc.byline }}</li></koken:not></koken:iptc>
+					</koken:if>
+					<koken:if true="settings.show_license">
+						<koken:not empty="content.license.clean">
+							<li class="picinfodetail"><span class="picinfosub">{{ language.kcs_license_ }} </span>
+								<koken:if empty="settings.address_copyright_page_id">
+									{{ content.license.clean }}
+								<koken:else>
+									<koken:link to="page" filter:id="{{ settings.address_copyright_page_id }}" title="{{ content.license.clean }} {{ profile.name }}" class="picinfosub">{{ content.license.clean }}</koken:link>
+								</koken:if>
+							</li>
+						</koken:not>
+					</koken:if>
+					<koken:if true="settings.show_img_download">
+						<koken:content_image>
+							<koken:max_download>
+								<li class="picinfodetail">
+									<span class="picinfosub">{{ language.download_image }}: </span>
+									<koken:link class="picinfosub" title="{{ language.download }} {{ content.title | content.filename.clean case='title' }} {{ language.kcs_in_ }} {{ max_download.width }}x{{ max_download.height }}">
+										{{ max_download.title }}
+									</koken:link>
+								</li>
+							</koken:max_download>
+						</koken:content_image>
+					</koken:if>
+					<koken:if true="settings.show_album_download && settings.show_sharing_icons">
+						<koken:parent>
+							<koken:album_download>
+								<li class="picinfodetail">
+									<span class="picinfosub">{{ language.download }} {{ labels.album.singular }}: </span>
+									<koken:link class="picinfosub" title="{{ language.download }} {{ album_download.title }}">
+										{{ album_download.title }}
+									</koken:link>
+								</li>
+							</koken:album_download>
+						</koken:parent>
+					</koken:if>
+				</ul>
+			</div>
+		</koken:if>
+	</div>
+</div>

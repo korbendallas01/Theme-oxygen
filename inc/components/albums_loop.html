@@ -1,0 +1,9 @@
+<koken:not empty="covers">
+	<li id="content-{{ id }}" class="album{{ album.id }}">
+		<koken:link title="{{ language.view_everything_in_title collate='album.title' }}">
+			<koken:img size="{{ settings.grid_asp_ratio }}" lazy="true" onclick="void(0)" />
+		</koken:link>
+		<h3 class="name_overlay name--truncate">{{ album.title }}</h3>
+		<!--<h3 class="{{ settings.show_title }} name--truncate">{{ album.title }}</h3>-->
+	</li>
+</koken:not>

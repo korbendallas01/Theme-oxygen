@@ -1,0 +1,13 @@
+<ul class="social-links">
+	<koken:if true="settings.show_album_download">
+		<koken:album_download>
+			<li class="share--album-download"><koken:link title="{{ language.download }} {{ album_download.title }}"><i class="kicon-dl"></i></koken:link></li>
+		</koken:album_download>
+	</koken:if>
+	<li class="share--twitter"><koken:link share="twitter" class="share_twitter"><i class="kicon-twitter"></i></koken:link></li>
+	<li class="share--facebook"><koken:link share="facebook" class="share_facebook"><i class="kicon-facebook"></i></koken:link></li>
+	<li class="share--pinterest"><koken:link share="pinterest" class="share_pinterest"><i class="kicon-pinterest"></i></koken:link></li>
+	<li class="share--tumblr"><koken:link share="tumblr" class="share_tumblr"><i class="kicon-tumblr"></i></koken:link></li>
+	<li class="share--google-plus"><koken:link share="google-plus" class="share_gplus"><i class="kicon-gplus"></i></koken:link></li>
+	<li class="share--permalink"><koken:link url="javascript:void(0)" data-clipboard-text="{{ location.site_url }}{{ location.here }}" class="o-clippy" title="{{ language.kcs_copy collate='language.permalink' }}"><i class="kicon-link"></i></koken:link></li>
+</ul>

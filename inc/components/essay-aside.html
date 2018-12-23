@@ -1,0 +1,156 @@
+<aside class="essay-aside {{ settings.essay_aside }} clearfix">
+	<koken:topics>
+		<div class="essay_topics clearfix">
+			<h1 class="picinfo clearfix">{{ language.see_more_in }}</h1>
+			<koken:loop>
+				<h1 class="picinfo clearfix"><koken:link title="{{ language.view_title collate='album.title' }}">{{ album.title }}</koken:link></h1>
+				<koken:link lightbox="true" title="{{ language.view_title collate='album.title' }}">
+					<koken:covers>
+						<koken:img size="{{ settings.grid_asp_ratio }}" lazy="true" class="preview no-cart essay_topics_cover" />
+					</koken:covers>
+				</koken:link>
+				<ul class="grid">
+					<koken:load source="album" filter:id="{{ album.id }}" limit="3">
+						<koken:loop>
+							<li class="essay_topics_album_img">
+								<koken:link lightbox="true" title="{{ language.view_title collate='content.title | content.filename.clean' case='title' }}">
+									<koken:img size="1:1" class="preview no-cart" />
+								</koken:link>
+						</koken:loop>
+					</koken:load>
+				</ul>
+			</koken:loop>
+			<hr />
+		</div>
+	</koken:topics>
+
+	<div class="essay_favorites aside_thumbs clearfix">
+		<h1 class="picinfo clearfix"><koken:link to="favorites" title="{{ language.viewing_everything_in_title collate='language.favorites' }}">{{ language.favorites }}</koken:link></h1>
+		<koken:load source="favorites" order_by="favorited_on" order_direction="desc" limit="3">
+			<ul class="essaydata">
+				<koken:loop>
+					<li>
+						<koken:link lightbox="true" title="{{ language.view_title collate='content.title | content.filename.clean' }}">
+							<koken:img lazy="true" class="preview" style="border-radius:5px;" />
+						</koken:link>
+						<h3 class="name_overlay name--truncate">{{ content.title | content.filename.clean case="title" }}</h3>
+						<koken:include file="inc/components/image-utilitybar.html" />
+						<koken:include file="inc/components/picinfo_grid_exif.html" />
+					</li>
+				</koken:loop>
+			</ul>
+		<koken:else>
+			<koken:note>No images or videos found</koken:note>
+		</koken:load>
+		<hr />
+	</div>
+
+	<div class="essay_featured_img aside_thumbs clearfix">
+		<h1 class="picinfo clearfix"><koken:link to="featured" title="{{ language.viewing_everything_in_title collate='language.kcs_featured_images' }}">{{ language.kcs_featured_images }}</koken:link></h1>
+		<koken:load source="featured_content" order_by="featured_on" order_direction="desc" limit="3">
+			<ul class="essaydata">
+				<koken:loop>
+					<li>
+						<koken:link lightbox="true" title="{{ language.view_title collate='content.title | content.filename.clean' }}">
+							<koken:img lazy="true" class="preview" style="border-radius:5px;" />
+						</koken:link>
+						<h3 class="name_overlay name--truncate">{{ content.title | content.filename.clean case="title" }}</h3>
+						<koken:include file="inc/components/image-utilitybar.html" />
+						<koken:include file="inc/components/picinfo_grid_exif.html" />
+					</li>
+				</koken:loop>
+			</ul>
+		<koken:else>
+			<koken:note>No images or videos found</koken:note>
+		</koken:load>
+		<hr />
+	</div>
+
+	<koken:categories>
+		<div class="essay_categories clearfix">
+			<h1 class="picinfo clearfix">{{ language.categories }}</h1>
+				<ul class="taggsdata">
+				<koken:loop>
+					<li id="cats" class="tagdetail">
+						<koken:link to="category" title="{{ language.view_everything_in }} {{ category.title }}">
+							<svg class="icon-exif" id="icon-exif-category"><use xlink:href="#icon-exif-category" /></svg> {{ category.title case="title" }}
+						</koken:link>
+					</li>
+				</koken:loop>
+			</ul>
+			<hr />
+		</div>
+	</koken:categories>
+
+	<koken:tags>
+		<div class="essay_tags clearfix">
+			<h1 class="picinfo clearfix">{{ language.tags }}</h1>
+			<ul class="taggsdata">
+				<koken:loop>
+					<li id="tag" class="tagdetail">
+						<koken:link title="{{ language.view_everything_in }} {{ tag.title }}">
+							<svg class="icon-exif" id="icon-exif-tag"><use xlink:href="#icon-exif-tag" /></svg> {{ tag.title case="title" }}
+						</koken:link>
+					</li>
+				</koken:loop>
+			</ul>
+			<hr />
+		</div>
+	</koken:tags>
+
+	<div class="essay_latest clearfix">
+		<h1 class="picinfo clearfix">{{ language.recent_essays }}</h1>
+		<koken:load source="essays" order_by="published_on" order_direction="desc" limit="3">
+			<ul class="essaydata">
+				<koken:loop>
+					<li>
+						<koken:link style="white-space: pre-line;" title="{{ essay.title }}&#013;{{ essay.excerpt strip_html='true' }}">
+							<svg class="icon-misc" id="icon-misc-recent_essays" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50.1 49.9"><path d="M30 0c0.3 0 0.5 0 0.8 0 2 1.1 2.3 3.9 3.1 6 1.6 4.4 3.2 8.7 4.9 13.4 0.6 1.8 2.6 5.9 0 6.4 -2.5 0.5-3-2.9-3.5-4.3 -2.1-5.8-4.3-11.5-6.2-17.1C20.7 5.8 13 7.8 4.7 9.2c1.4 4.7 3.2 10.6 5.3 16.4 1.9 5.3 3.9 11.3 7 14.4 4.2 4.1 11.4 2.8 10.3-5.5 7.5-2.8 14.6-5.9 22-8.8 2.5 11.3-6.3 12.7-13.6 16.2 -4 1.9-7.5 4.4-11.9 4.7 -5.1 0.3-9.1-2.6-11.3-5.6C6.3 32.7 4.3 18.6 0 8.4c0-0.5 0-0.9 0-1.4 1.8-1.9 5.4-2 8.8-2.7C15.5 2.9 24.1 1.3 30 0z"/></svg> {{ essay.title }}
+						</koken:link>
+					</li>
+				</koken:loop>
+			</ul>
+		<koken:else>
+			<koken:note>No published essays found</koken:note>
+		</koken:load>
+		<hr />
+	</div>
+
+	<div class="essay_featured clearfix">
+		<h1 class="picinfo clearfix">{{ language.featured_essays }}</h1>
+		<koken:load source="featured_essays" order_by="published_on" order_direction="desc" limit="3">
+			<ul class="essaydata">
+				<koken:loop>
+					<li>
+						<koken:link style="white-space: pre-line;" title="{{ essay.title }}&#013;{{ essay.excerpt strip_html='true' }}">
+							<i class="kicon-star"></i> {{ essay.title }}
+						</koken:link>
+					</li>
+				</koken:loop>
+			</ul>
+		<koken:else>
+			<koken:note>No featured essays found</koken:note>
+		</koken:load>
+		<hr />
+	</div>
+
+	<koken:include file="inc/components/essay-aside-twitter.html" />
+
+	<div class="content-pag clearfix">
+		<koken:next>
+			<span class="pag-next"><koken:link data-bind-to-key="left" style="white-space: pre-line;" title="{{ essay.title }}&#013;{{ essay.excerpt }}"> &larr; </koken:link></span>
+		</koken:next>
+		<span class="pag-all"><koken:link data-bind-to-key="home" to="essays" title="{{ language.view_all_essays }}">{{ language.view_all_essays }}</koken:link></span>
+		<koken:previous>
+			<span class="pag-prev"><koken:link data-bind-to-key="right" style="white-space: pre-line;" title="{{ essay.title }}&#013;{{ essay.excerpt }}"> &rarr; </koken:link></span>
+		</koken:previous>
+
+		<div class="essay_select clearfix">
+			<div class="styled-select sel_color rounded">
+				<koken:dates limit_to="essays">
+					<koken:select label="{{ language.select_month }}" />
+				</koken:dates>
+			</div>
+		</div>
+	</div>
+</aside>

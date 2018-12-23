@@ -1,0 +1,26 @@
+<koken:if condition="{{ content.length }} < 2">
+	<koken:loop>
+	<koken:content_image>
+		<koken:link lightbox="{{ settings.use_lightbox }}" title="{{ language.view }} {{ content.title | content.filename }}">
+			<koken:img lazy="true" class="lists-singel" />
+			<koken:if data="settings.enable_ps_caption" equals="true">
+				<koken:include file="inc/components/photoswipe_caption.html" />
+			</koken:if>
+		</koken:link>
+	</koken:content_image>
+	<koken:content_video>
+		<koken:video class="preview" />
+		<koken:link lightbox="{{ settings.use_lightbox }}" title="{{ language.view }} {{ content.title | content.filename }}">
+			<h4>{{ content.title | content.filename }}</h4>
+		</koken:link>
+	</koken:content_video>
+	</koken:loop>
+<koken:else>
+	<div class="timeline-pulse">
+		<koken:pulse jsvar="pulse_{{ album.id }}" group="time_albumup_list" link_to="advance" data="album.content" transition_type="fade" transition_duration="1" size="auto" />
+		<script>pulse_{{ album.id }}.on( 'start', function() {$('#ss_spinner_{{ album.id }}').addClass('loading');});
+		pulse_{{ album.id }}.on( 'waiting', function(e) {if (e) {$('#ss_spinner_{{ album.id }}').addClass('loading');} else {$('#ss_spinner_{{ album.id }}').removeClass('loading');}});
+		pulse_{{ album.id }}.on( 'dataloaded', function() {$('#ss_spinner_{{ album.id }}').removeClass('loading');});</script>
+		<div id="ss_spinner_{{ album.id }}"></div>
+	</div>
+</koken:if>

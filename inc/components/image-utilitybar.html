@@ -1,0 +1,19 @@
+<div class="image-utilitybar">
+	<koken:if true="settings.show_img_download">
+		<koken:content_image>
+			<koken:max_download>
+				<div class="download-img">
+					<koken:link title="{{ language.download }} {{ content.title | content.filename.clean }} {{ language.kcs_in_ }} {{ max_download.width }}x{{ max_download.height }}px">
+						<span class="download-txt">{{ language.download }}</span><i class="kicon-dl"></i>
+					</koken:link>
+				</div>
+			</koken:max_download>
+		</koken:content_image>
+	</koken:if>
+
+	<koken:if true="settings.show_rating">
+		<koken:rating>
+			<div class="rating" title="{{ language.kcs_likes_ }}">{{ rating }}</div>
+		</koken:rating>
+	</koken:if>
+</div>

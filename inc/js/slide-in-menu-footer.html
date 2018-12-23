@@ -1,0 +1,4 @@
+<koken:if data="settings.menu_type" equals="right || left">
+	<koken:asset file="inc/js/slide-in-menu.min.js" />
+	<script>(function(){var OxyGenSlideInMenu = new OxyGenSlideIn({wrapper:'main',type:'slide-{{ settings.menu_type }}',menuOpenerClass:'.oxygen-button',maskId:'#oxygen-mask'});var OxyGenSlideInMenuBtn = document.querySelector('#oxygen-button-slide-{{ settings.menu_type }}');OxyGenSlideInMenuBtn.addEventListener('click', function(e) {e.preventDefault;OxyGenSlideInMenu.open();});})();</script>
+</koken:if>

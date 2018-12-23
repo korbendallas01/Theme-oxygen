@@ -1,0 +1,13 @@
+<article class="top-section">
+	<h1 class="album-name">
+		<koken:if data="location.template" equals="vimeo">{{ language.content_from_title collate="Vimeo" }}</koken:if>
+		<koken:if data="location.template" equals="contents">{{ language.content }}</koken:if>
+		<koken:if data="location.template" equals="favorites">{{ language.favorites }}</koken:if>
+		<koken:if data="location.template" equals="featured">{{ language.kcs_featured_images }}</koken:if>
+		<koken:if data="location.template" equals="categories">{{ language.categories }}</koken:if>
+		<koken:if data="location.template" equals="tags">{{ language.tags }}</koken:if>
+		<koken:load>
+			<koken:if data="archive.type" equals="tag || category">{{ language.view_all_of_title collate="archive.title" }}</koken:if>
+		</koken:load>
+	</h1>
+</article>
